@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-05 18:54:32.140962",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "member_name",
+  "designation",
+  "contact"
+ ],
+ "fields": [
+  {
+   "fieldname": "member_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Member Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Designation",
+   "options": "Crew Designation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Data",
+   "label": "Contact"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-05 19:07:34.009497",
+ "modified_by": "Administrator",
+ "module": "Airline",
+ "name": "Crew Members",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

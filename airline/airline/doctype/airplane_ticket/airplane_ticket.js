@@ -45,6 +45,15 @@ frappe.ui.form.on('Airplane Ticket', {
                 }
             });
         }
+    },
+
+    ////
+    refresh: function(frm) {
+        if (frm.doc.docstatus === 0) {  // Show only if editable
+            frm.add_custom_button("Assign Seat", function() {
+                assign_seat(frm);
+            }, "Actions");
+        }
     }
 });
 
@@ -88,4 +97,19 @@ function remove_duplicate_add_ons(frm) {
     calculate_total_amount(frm);
 
     return duplicate_found; 
+}
+
+
+function assign_seat(frm) {
+    frappe.prompt([
+        {
+            fieldname: "seat",
+            fieldtype: "Data",
+            label: "Enter Seat Number",
+            reqd: 1
+        }
+    ], function(values) {
+        frm.set_value("seat", values.seat);  // Set the value in the form
+        frappe.msgprint("Seat assigned temporarily! Submit to save.");
+    }, "Assign Seat", "Assign");
 }

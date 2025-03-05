@@ -7,8 +7,23 @@ from frappe.model.document import Document
 
 class AirplaneTicket(Document):
     def validate(self):
+        # Status check before submission
         if self.docstatus == 1 and self.status != "Boarded":
             frappe.throw("You cannot submit this document unless the status is 'Boarded'.")
+
+        flight = frappe.get_doc("Airplane Flight", self.flight)
+        airplane = frappe.get_doc("Airplane", flight.airplane)
+        
+        # Jetli tickets already booked che (excluding this one)
+        booked_tickets = frappe.db.count("Airplane Ticket", {
+            "flight": self.flight,
+            "docstatus": 1,
+            "name": ["!=", self.name]  # Exclude the current ticket
+        })
+        
+        # Capacity check
+        if booked_tickets >= airplane.capacity:
+            frappe.throw(f"Cannot create ticket! The flight has reached its maximum capacity of {airplane.capacity} seats.")
 
     def on_submit(self):
         update_flight_status(self)

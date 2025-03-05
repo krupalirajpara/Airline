@@ -1,0 +1,46 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h2>Book Your Flight</h2>
+
+<form method="POST" class="frappe-web-form">
+    <input type="hidden" name="doctype" value="Airplane Ticket">
+    
+    <ul>
+        <!-- Auto-filled Flight -->
+        <li>
+            <label for="flight"><b>Flight:</b></label>
+            <input type="text" id="flight" name="flight" readonly>
+        </li>
+
+        <!-- Auto-filled Flight Price (Read-Only) -->
+        <li>
+            <label for="flight_price"><b>Flight Price:</b></label>
+            <input type="text" id="flight_price" name="flight_price" readonly>
+        </li>
+
+        <!-- Passenger Name -->
+        <li>
+            <label for="passenger_name"><b>Passenger Name:</b></label>
+            <input type="text" name="passenger_name" required>
+        </li>
+
+        <!-- Email -->
+        <li>
+            <label for="email"><b>Email:</b></label>
+            <input type="email" name="email" required>
+        </li>
+
+        <!-- Seat Number -->
+        <li>
+            <label for="seat_number"><b>Seat Number:</b></label>
+            <input type="text" name="seat_number">
+        </li>
+
+        <!-- Submit Button -->
+        <li>
+            <button type="submit" class="btn btn-primary">Book Flight</button>
+        </li>
+    </ul>
+</form>
+{% endblock %}
