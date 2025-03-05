@@ -25,6 +25,26 @@ frappe.ui.form.on('Airplane Ticket', {
             frappe.throw(__('Duplicate add-ons found! Please remove them before saving.'));
         }
         calculate_total_amount(frm);
+    },
+
+    ////
+    validate: function(frm) { 
+        if (!frm.doc.seat) {
+            frappe.call({
+                method: "airline.airline.doctype.airplane_ticket.airplane_ticket.assign_seat",
+                args: {
+                    flight: frm.doc.flight
+                },
+                callback: function(r) {
+                    console.log("Response from assign_seat:", r);
+                    if (r.message) {
+                        frm.set_value('seat', r.message);
+                    } else {
+                        frappe.msgprint("No seat assigned. Check availability.");
+                    }
+                }
+            });
+        }
     }
 });
 

@@ -1,0 +1,26 @@
+{% set color = frappe.form_dict.color or "black" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Me Color</title>
+    <style>
+        :root {
+        --dynamic-color: {{ color }};
+    }
+
+    .rectangle {
+        width: 500px;
+        height: 600px;
+        background-color: var(--dynamic-color);
+    }
+    </style>
+</head>
+<body>
+    <div class="rectangle">
+        {{ color | capitalize }}
+    </div>
+</body>
+</html>
