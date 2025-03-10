@@ -9,18 +9,20 @@
   "section_break_kcn1",
   "amended_from",
   "passenger",
+  "flight_details_section",
   "flight",
+  "gate_no",
   "source_airport_code",
   "destination_airport_code",
   "departure_date",
   "departure_time",
   "duration_of_flight",
-  "status",
-  "add_ons",
-  "flight_price",
-  "total_amount",
   "seat",
-  "gate_no"
+  "status",
+  "flight_price",
+  "add_ons_section",
+  "add_ons",
+  "total_amount"
  ],
  "fields": [
   {
@@ -127,14 +129,23 @@
    "fetch_from": "flight.gate_no",
    "fieldname": "gate_no",
    "fieldtype": "Data",
-   "label": "Gate No",
-   "read_only": 1
+   "label": "Gate No"
+  },
+  {
+   "fieldname": "flight_details_section",
+   "fieldtype": "Section Break",
+   "label": "Flight Details"
+  },
+  {
+   "fieldname": "add_ons_section",
+   "fieldtype": "Section Break",
+   "label": "Add ons "
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-03-05 19:15:04.694945",
+ "modified": "2025-03-07 17:08:05.846051",
  "modified_by": "Administrator",
  "module": "Airline",
  "name": "Airplane Ticket",

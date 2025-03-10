@@ -148,7 +148,7 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"airline.tasks.all"
 # 	],
@@ -161,10 +161,16 @@ app_license = "mit"
 # 	"weekly": [
 # 		"airline.tasks.weekly"
 # 	],
-# 	"monthly": [
-# 		"airline.tasks.monthly"
-# 	],
-# }
+    # "monthly": [
+    #     "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
+    # ],
+
+   "cron": {
+        "*/1 * * * *": [
+            "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
+        ]
+    },
+}
 
 # Testing
 # -------
@@ -242,3 +248,12 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+fixtures = [
+    {
+        "doctype": "Shop Type",
+        "filters": [
+            ["enabled", "=", 1] 
+        ]
+    }
+]

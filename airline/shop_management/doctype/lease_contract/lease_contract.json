@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "prompt",
+ "creation": "2025-03-06 10:30:47.806293",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "shop",
+  "tenant",
+  "rent_amount",
+  "lease_start_date",
+  "lease_end_date",
+  "payment_terms",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "shop",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Shop",
+   "options": "Shop",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tenant",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tenant",
+   "options": "Tenant",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rent_amount",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rent Amount",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "lease_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Lease Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lease_end_date",
+   "fieldtype": "Date",
+   "label": "Lease End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "Monthly\nQuarterly\nYearly"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nExpired\nTerminated"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-07 13:38:54.449624",
+ "modified_by": "Administrator",
+ "module": "Shop management",
+ "name": "Lease Contract",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
