@@ -27,7 +27,7 @@ frappe.ui.form.on('Airplane Ticket', {
         calculate_total_amount(frm);
     },
 
-    ////
+    //// check seat availability
     validate: function(frm) { 
         if (!frm.doc.seat) {
             frappe.call({
@@ -47,7 +47,7 @@ frappe.ui.form.on('Airplane Ticket', {
         }
     },
 
-    ////
+    //// custom button for assign seat
     refresh: function(frm) {
         if (frm.doc.docstatus === 0) {  // Show only if editable
             frm.add_custom_button("Assign Seat", function() {
@@ -75,31 +75,26 @@ function calculate_total_amount(frm) {
 }
 
 function remove_duplicate_add_ons(frm) {
-    let unique_add_ons = new Set();
-    let cleaned_add_ons = [];
-    let duplicate_found = false;
+    let seen_add_ons = new Set();
+    let duplicate_indexes = [];
+    let add_ons = frm.doc.add_ons || [];
 
-    (frm.doc.add_ons || []).forEach(row => {
-        if (!unique_add_ons.has(row.add_on_type)) {
-            unique_add_ons.add(row.add_on_type);
-            cleaned_add_ons.push(row);
+    add_ons.forEach((row, index) => {
+        if (seen_add_ons.has(row.add_on_type)) {
+            duplicate_indexes.push(index);
         } else {
-            duplicate_found = true;
+            seen_add_ons.add(row.add_on_type);
         }
     });
 
-    if (duplicate_found) {
-        frappe.msgprint(__('Duplicate add-ons found! Remove them to proceed.'));
+    if (duplicate_indexes.length > 0) {
+        frappe.msgprint(__('Duplicate add-ons found in this ticket! Removing them automatically.'));
+        duplicate_indexes.reverse().forEach(index => frm.get_field("add_ons").grid.grid_rows[index].remove());
+        frm.refresh_field("add_ons");
     }
-
-    frm.doc.add_ons = cleaned_add_ons;
-    frm.refresh_field("add_ons"); 
-    calculate_total_amount(frm);
-
-    return duplicate_found; 
 }
 
-
+// assign seat No
 function assign_seat(frm) {
     frappe.prompt([
         {
