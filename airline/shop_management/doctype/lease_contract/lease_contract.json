@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "prompt",
+ "autoname": "field:shop",
  "creation": "2025-03-06 10:30:47.806293",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -21,7 +21,8 @@
    "in_list_view": 1,
    "label": "Shop",
    "options": "Shop",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "tenant",
@@ -67,11 +68,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-07 13:38:54.449624",
+ "modified": "2025-03-10 13:16:11.237151",
  "modified_by": "Administrator",
  "module": "Shop management",
  "name": "Lease Contract",
- "naming_rule": "Set by user",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

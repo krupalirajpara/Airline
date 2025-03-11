@@ -1,7 +1,27 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<h1>{{ title }}</h1>
+<div>
+    <h3>Shop Details</h3>
+    <ul>
+        <h4>{{ title }}</h4>
+        {% set airport_name = frappe.db.get_value("Airport", doc.airport, "name") %}
+        <li>Airport: {{ airport_name }}</li>
+        <li>Category: {% if category != None %} {{category}} {% endif%}</li>
+        {% set shop_type = frappe.db.get_value("Shop Type", doc.shop_type, "shop_type") %}
+        <li>Shop Type: {% if shop_type != None %} {{shop_type}} {% endif%}</li>
+        <li>Status: {{status}}</li>
+    </ul>
+    <div>
+        {% if status == 'Available' %}
+        <a href="{{ frappe.utils.get_url('/lead-shop/new') }}?shop={{ doc.name }}" 
+        class="btn btn-primary">
+        Lead Shop
+        </a>  
+        {% else %}
+        <h3 style="color: red;"><strong> Shop Is already Occupied! </strong></h3>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
-
 <!-- this is a sample default web page template -->

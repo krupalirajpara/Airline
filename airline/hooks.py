@@ -29,7 +29,7 @@ app_license = "mit"
 # app_include_js = "/assets/airline/js/airline.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/airline/css/airline.css"
+web_include_css = "/assets/airline/css/custom.css"
 # web_include_js = "/assets/airline/js/airline.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -164,12 +164,26 @@ scheduler_events = {
     # "monthly": [
     #     "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
     # ],
-
-   "cron": {
-        "*/1 * * * *": [
-            "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
-        ]
+    
+    # runs only once in month
+    "cron": {
+    "0 0 1 * *":[
+        "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
+    ]
     },
+
+#    "cron": {
+#         "*/1 * * * *": [
+#             "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
+#         ]
+#     },
+
+    # Every minutes
+    # "cron": {
+    #     "* * * * *": [
+    #         "airline.shop_management.doctype.lease_contract.reminder.send_rent_due_reminder"
+    #     ]
+    # },
 }
 
 # Testing
